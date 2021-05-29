@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+ integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" 
+integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ <style>
+     {{!-- .a{
+         height:100vh;
+         width: 100%;
+         display:flex;
+         justify-content:center;
+         align-items:center;
+
+         margin-top: 0%;
+     } --}}
+ </style>
+</head>
+<body>
+{{>header}}
+    
+    <div class="a"></div>
+  <a href="userinsert"><button class="btn btn-dark">insert users</button></a>
+    <br>
+    <br>
+
+   <table class="table">
+       
+  <thead>
+    <tr>
+     
+      <th scope="col">Name</th>
+      <th scope="col">Studentid</th>
+      <th scope="col">Class</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  {{#each users}}
+  <tbody>
+    <tr>
+      <th scope="row">{{this.name}}</th>
+      <td>{{this.studentid}}</td>
+      <td>{{this.class}}</td>
+        <td>
+            <i class="fas fa-trash-alt"></i>
+            <i class="fas fa-edit"></i>
+        </td>
+    </tr>
+  
+   
+  </tbody>
+  {{/each}}
+</table>
+
+
+   </div>
+</div>
+    
+</body>
+</html>
