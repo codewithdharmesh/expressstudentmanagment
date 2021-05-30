@@ -35,7 +35,52 @@ res.render('index');
 
 });
 
+// *******    UPDATE STUDENT INFO ********************************
+app.get("/update/:_id",async(req,res)=>{
 
+    const _id = req.params._id;
+         const result = await Student.findById(_id);
+        
+         res.render('updatedata',{
+             _id: result._id,
+             name:result.name,
+             studentid:result.studentid,
+             class:result.class
+         })
+});
+
+app.post("/updatedata",async(req ,res)=>{
+try {
+    const result = await Student.updateOne({_id:req.body._id}, {$set:{
+        name:req.body.name,
+        studentid:req.body.studentid,
+        class:req.body.class
+         }});
+   
+         const users = await Student.find({});
+         res.render('userpanel',{users:users});
+     
+   
+} catch (error) {
+    console.log(error);
+    
+}
+   
+});
+
+
+//********delete student data ***********************
+app.get("/delete/:_id",async(req,res)=>{
+    const _id = req.params._id;
+    const result = await Student.deleteOne({_id});
+
+    const users = await Student.find({});
+    res.render('userpanel',{users:users});
+
+})
+
+
+// ************ SHOW INFO ******************
 app.get("/userpanel",Auth,async(req,res) => {
    try {
     // axios.get('http://localhost:3000/userdata').then((response) => {
@@ -53,7 +98,7 @@ app.get("/userpanel",Auth,async(req,res) => {
 
 
 
-
+// ********* INSERT INFO ********************************
 app.get("/userinsert",Auth,(req,res)=>{
     res.render('userinsert');
 })
@@ -65,9 +110,11 @@ app.post("/userinsert", async(req,res) => {
             class:req.body.class
 
         })
-        const result = await user.save();
-        // console.log(result);
-        res.render('userpanel');
+        await user.save();
+
+        const users = await Student.find({});
+        res.render('userpanel',{users:users});
+
     } catch (error) {
         console.log(error);
         
@@ -93,7 +140,7 @@ app.post("/login",async (req,res) =>{
         const token = await result.genratetoken();
 
         res.cookie("jwt",token,{
-            expires:new Date(Date.now() +900000),
+            expires:new Date(Date.now() +9000000),
             httpOnly:true
         });
 
@@ -143,7 +190,7 @@ app.post("/register", async (req,res)=>{
              // storing this cookies 
              // res.cookie(name,datastore,options)
              res.cookie("jwt",token,{
-                 expires:new Date(Date.now() +900000),
+                 expires:new Date(Date.now() +9000000),
                  httpOnly:true
              });
  

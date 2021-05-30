@@ -48,9 +48,12 @@ integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+
       <th scope="row">{{this.name}}</th>
       <td>{{this.studentid}}</td>
       <td>{{this.class}}</td>
+      <td></td>
         <td>
-            <i class="fas fa-trash-alt"></i>
-            <i class="fas fa-edit"></i>
+            <a href="/delete/{{this._id}}"><i class="fas fa-trash-alt"> </i></a>
+
+
+            <a href="/update/{{this._id}}"><i class="fas fa-edit"></i></a>
         </td>
     </tr>
   
